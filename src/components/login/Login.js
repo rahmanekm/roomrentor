@@ -1,71 +1,68 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Form, Button } from "react-bootstrap"
-import loginIcon from '../../images/user.png'
-import uiImg from '../../images/worlddest.svg'
-import '../login/login.css'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Added Link
+import loginIcon from '../../images/user.png'; // Keep user icon for top of form
+import './login.css'; // Will be rewritten
 
-
-
-
-export default () => {
+const Login = () => { // Changed to const Login for consistency
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     let navigate = useNavigate();
-
 
     const onSubmit = event => {
         event.preventDefault();
-        navigate("/rooms");
+        // Add actual login logic here in the future
+        console.log("Login attempt with:", email, password);
+        navigate("/rooms"); // Navigate to rooms on successful login (placeholder)
     };
 
     return (
+        <div className="auth-page-spareroom">
+            <div className="auth-form-container-spareroom">
+                <img className="auth-icon-spareroom" src={loginIcon} alt="Login Icon" />
+                <h2>Welcome Back!</h2>
+                <p className="auth-subheading-spareroom">Log in to continue to RoomRentor.</p>
+                
+                <form onSubmit={onSubmit} className="auth-form-spareroom">
+                    <div className="form-group-spareroom">
+                        <label htmlFor="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email"
+                            value={email}
+                            onChange={event => setEmail(event.target.value)}
+                            required 
+                            placeholder="you@example.com"
+                            className="form-input-spareroom"
+                        />
+                    </div>
 
-        <>
-            <Container className="mt-5">
-                <Row>
-                    <Col lg={4} md={6} sm={12} className="text-center mt-5 p-3">
-                        <img className="icon-img" src={loginIcon} alt="icon" />
-                        <Form onSubmit={onSubmit}>
+                    <div className="form-group-spareroom">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password"
+                            value={password}
+                            onChange={event => setPassword(event.target.value)}
+                            required 
+                            placeholder="Enter your password"
+                            className="form-input-spareroom"
+                        />
+                    </div>
 
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Email </Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    value={email}
-                                    onChange={event => setEmail(event.target.value)}
-                                    required
-                                    placeholder="Email"
-                                />
-                            </Form.Group>
+                    <div className="form-options-spareroom">
+                        {/* Add remember me checkbox if needed */}
+                        <Link to="/forgot-password" className="auth-link-spareroom">Forgot Password?</Link>
+                    </div>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password </Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    value={password}
-                                    onChange={event => setPassword(event.target.value)}
-                                    required
-                                    placeholder="Password"
-                                />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-
-                            <Button variant="primary btn-block" type="submit">Login</Button>
-
-                            <div>
-                                <a href="#"><small className="reset">Forgot Password?</small></a>
-                            </div>
-                        </Form>
-                    </Col>
-
-                    <Col lg={8} md={6} sm={12}>
-                        <img className="w-100" src={uiImg} alt="" />
-                    </Col>
-                </Row>
-            </Container>
-        </>
-
+                    <button type="submit" className="form-button-spareroom">Log In</button>
+                </form>
+                
+                <div className="auth-switch-spareroom">
+                    <p>Don't have an account? <Link to="/register" className="auth-link-spareroom bold">Sign Up</Link></p>
+                </div>
+            </div>
+        </div>
     );
 };
+
+export default Login; // Consistent export
