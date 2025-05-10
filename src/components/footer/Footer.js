@@ -77,7 +77,6 @@ const Footer = () => {
       </div>
       <div className="footer-bottom-spareroom">
         <p>&copy; {new Date().getFullYear()} RoomRentor. All rights reserved. </p>
-        <p>Cloned for educational purposes. Not affiliated with Spareroom.</p>
       </div>
     </footer>
   );

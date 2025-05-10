@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Added useEffect
 import { Link } from "react-router-dom";
-// Using a generic placeholder for the main banner, as specific Spareroom images are copyrighted.
-// You can replace this with your own or a suitable stock image.
-import HeroPlaceholderImage from "../../images/worlddest.svg"; // Example, replace with a more suitable one
-import CityPlaceholder1 from "../../images/choosinghouse.svg"; // Placeholder for popular locations
-import CityPlaceholder2 from "../../images/addplace.svg";     // Placeholder for popular locations
-import CityPlaceholder3 from "../../images/bestplace.svg";    // Placeholder for popular locations
+
+// Hero Slideshow Images
+import HeroBg1 from "../../images/hero-background.jpg";
+import HeroBg2 from "../../images/hero-background_1.jpg";
+import HeroBg3 from "../../images/hero-background_2.jpg";
+import HeroBg4 from "../../images/hero-background_3.jpg";
+
+// Popular Location Images
+import LondonLocationImage from "../../images/london-unsplash.jpg"; 
+import ManchesterLocationImage from "../../images/manchester-unsplash.jpg"; 
+import BirminghamLocationImage from "../../images/birmingham-unsplash.jpg";
 import "../home/home.css";
 
 // SVG Icon Components for "How it Works"
@@ -30,11 +35,23 @@ const MoveInIcon = () => (
 
 const Home = () => {
     const [searchType, setSearchType] = useState('rooms'); // 'rooms', 'flatmates', 'properties'
+    const heroImages = [HeroBg1, HeroBg2, HeroBg3, HeroBg4];
+    const [currentHeroImageIndex, setCurrentHeroImageIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentHeroImageIndex(prevIndex => 
+                prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 5000); // Change image every 5 seconds (5000 milliseconds)
+
+        return () => clearInterval(timer); // Cleanup interval on component unmount
+    }, [heroImages.length]);
 
     return (
         <div className="home-spareroom">
             {/* Hero Section */}
-                <div className="hero-section-spareroom" style={{ backgroundImage: `url(${HeroPlaceholderImage})` }}>
+            <div className="hero-section-spareroom" style={{ backgroundImage: `url(${heroImages[currentHeroImageIndex]})` }}>
                 <div className="hero-overlay-spareroom"></div>
                 <div className="hero-content-spareroom">
                     <h1>Your Next Chapter Starts Here.</h1>
@@ -106,15 +123,15 @@ const Home = () => {
                 <h2>Explore Popular Locations</h2>
                 <div className="locations-grid-spareroom">
                     <Link to="/rooms?location=london" className="location-card-spareroom">
-                        <img src={CityPlaceholder1} alt="Popular Location 1" />
+                        <img src={LondonLocationImage} alt="Popular Location London" />
                         <div className="location-name-spareroom">London</div>
                     </Link>
                     <Link to="/rooms?location=manchester" className="location-card-spareroom">
-                        <img src={CityPlaceholder2} alt="Popular Location 2" />
+                        <img src={ManchesterLocationImage} alt="Popular Location Manchester" />
                         <div className="location-name-spareroom">Manchester</div>
                     </Link>
                     <Link to="/rooms?location=birmingham" className="location-card-spareroom">
-                        <img src={CityPlaceholder3} alt="Popular Location 3" />
+                        <img src={BirminghamLocationImage} alt="Popular Location Birmingham" />
                         <div className="location-name-spareroom">Birmingham</div>
                     </Link>
                     {/* Add more as needed */}
@@ -138,7 +155,7 @@ const Home = () => {
             {/* Call to Action / Post Ad Section */}
             <div className="post-ad-cta-spareroom section-padding-spareroom bg-lightgrey-spareroom">
                 <h2>Got a Room to Rent or Looking for a Flatmate?</h2>
-                <p>Reach millions of potential tenants and flatmates by posting your ad today.</p>
+                <p>Reach hundreds of potential tenants and flatmates by posting your ad today.</p>
                 <Link to="/post-ad" className="post-ad-button-spareroom">Post Your Ad FREE</Link>
             </div>
 

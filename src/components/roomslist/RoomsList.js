@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"; // Added Link for View Details
 import "../roomslist/roomslist.css";
 
 // Placeholder images - assumed to be in src/images
-import londonImage from "../../images/worlddest.svg";
-import detroitImage from "../../images/choosinghouse.svg";
-import nyImage from "../../images/addplace.svg";
-import sfImage from "../../images/bestplace.svg";
+import londonAptImage from "../../images/london-apt.jpg"; // New image for London Apt
+import detroitImage from "../../images/choosinghouse.svg"; // Keeping placeholder
+import nyImage from "../../images/addplace.svg";         // Keeping placeholder
+import sfImage from "../../images/bestplace.svg";        // Keeping placeholder
 import userAvatarPlaceholder from "../../images/user.png"; // Placeholder for advertiser avatar
 
 // SVG Icons for Amenities
@@ -96,7 +96,7 @@ function RoomsList() {
             state: "", // UK listings might not always show state
             addressLine1: "10 Angel Lane",
             pricePerMonth: 950,
-            imageUrl: londonImage,
+            imageUrl: londonAptImage, // Use the new london-apt.jpg
             roomType: "Double room",
             propertyType: "flatshare",
             availableFrom: "Now",
