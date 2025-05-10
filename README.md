@@ -1,6 +1,6 @@
-# Rent A Room Single-page Application
+# Rent A Room Application
 
-This is a repository bootstraped with React. It is a single-page application with 4 pages: home, rooms, login, and register. A single-page application is an app that works inside a browser and does not require the page to be reloaded when used.
+This is a repository bootstraped with React. It is a application with 4 pages: home, rooms, login, and register. A single-page application is an app that works inside a browser and does not require the page to be reloaded when used.
 
 ## Available Scripts
 
